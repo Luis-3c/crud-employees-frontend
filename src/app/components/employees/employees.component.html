@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content blue-text">
+                        <h2 class="card-title">Add a new employee</h2>         
+                </div>
+                <div class="card-content">
+                    <form>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="name" [(ngModel)]="employee.name" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="position" [(ngModel)]="employee.position" placeholder="Position">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="office" [(ngModel)]="employee.office" placeholder="Office">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="salary" [(ngModel)]="employee.salary" placeholder="Salary">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!editing; else editButton">
+                            <button (click)="addEmployee()" type="submit" class="btn left">ADD</button>
+                        </div>
+                        <ng-template #editButton>
+                            <div class="row">
+                                <button (click)="editEmployee()" type="submit" class="btn green left">Edit</button>
+                            </div>
+                        </ng-template>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col s7">
+            <br>
+                <div class="left mt-5">Frontend Developers: 
+                        <div class=" btn-floating btn-large waves-effect waves-light purple">
+                            {{frontendCount}}
+                        </div>
+                </div>
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Salary</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let emp of employees">
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.position}}</td>
+                        <td>{{emp.office}}</td>
+                        <td>{{emp.salary}}</td>
+                        <td><a (click)="loadEmployeeById(emp._id)"class="btn green">Edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
